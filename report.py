@@ -75,16 +75,25 @@ class Report(object):
                     print("Day to apply to go outside, trying to apply")
                     
                     '''
+                    # update 1.0
                     end_date = start_date + datetime.timedelta(days=6)
                     start_date = start_date.isoformat()
                     end_date = end_date.isoformat()
                     '''
                     
+                    '''
+                    # update 2.0
                     timenow = datetime.datetime.now(pytz.timezone('Asia/Shanghai'))
                     start_date = timenow.strftime("%Y-%m-%d %H:%M:%S")
                     end_date = date.today() + datetime.timedelta(days=1)
                     end_date = end_date.isoformat()
                     end_date = end_date + ' 23:59:59'
+                    '''
+                    
+                    # update 2.1 
+                    timenow = datetime.datetime.now(pytz.timezone('Asia/Shanghai'))
+                    start_date = timenow.strftime("%Y-%m-%d %H:%M:%S")
+                    end_date = timenow.strftime("%Y-%m-%d 23:59:59")
                     
                     data = login.session.get('https://weixine.ustc.edu.cn/2020/apply/daliy').text
                     data = data.encode('ascii', 'ignore').decode('utf-8', 'ignore')
@@ -96,7 +105,12 @@ class Report(object):
                         "_token": token2,
                         "start_date": start_date,
                         "end_date": end_date,
-                        "t": 23
+                        "return_college[]": "东校区",
+                        "return_college[]": "西校区",
+                        "return_college[]": "南校区",
+                        "return_college[]": "北校区",
+                        "return_college[]": "中校区",
+                        "t": 3
                     }
                     print(data2)
                     headers2 = {
