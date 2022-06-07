@@ -121,6 +121,10 @@ class Report(object):
                     }
                     url2 = "https://weixine.ustc.edu.cn/2020/apply/daliy/ipost"
                     resp2 = login.session.post(url2, data=data2, headers=headers2)
+                    data3 = {
+                        "t": "d"
+                    }
+                    resp2 = login.session.post(url2, data=data3, headers=headers2)
 
                     # to check if apply success
 
